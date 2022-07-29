@@ -1,5 +1,33 @@
 {
   "cmake.configureSettings": {
     "CMAKE_TOOLCHAIN_FILE": "C:/development/vcpkg/scripts/buildsystems/vcpkg.cmake"
+  },
+  "files.associations": {
+    "algorithm": "cpp",
+    "chrono": "cpp",
+    "iterator": "cpp",
+    "xhash": "cpp",
+    "xmemory": "cpp",
+    "xtree": "cpp",
+    "xutility": "cpp",
+    "type_traits": "cpp",
+    "atomic": "cpp",
+    "format": "cpp",
+    "vector": "cpp",
+    "charconv": "cpp",
+    "forward_list": "cpp",
+    "iosfwd": "cpp",
+    "istream": "cpp",
+    "list": "cpp",
+    "ratio": "cpp",
+    "sstream": "cpp",
+    "string": "cpp",
+    "xiosbase": "cpp",
+    "xlocale": "cpp",
+    "xlocinfo": "cpp",
+    "xlocmon": "cpp",
+    "xlocnum": "cpp",
+    "xloctime": "cpp",
+    "xstring": "cpp"
   }
 }

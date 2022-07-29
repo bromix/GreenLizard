@@ -10,4 +10,8 @@ target_sources(${PROJECT_NAME}
 )
 
 find_package(GTest CONFIG REQUIRED)
-target_link_libraries(main PRIVATE GTest::gmock GTest::gtest GTest::gmock_main GTest::gtest_main)
+target_link_libraries(${PROJECT_NAME}
+    PRIVATE
+        GTest::gtest GTest::gtest_main
+        GreenLizard
+)
