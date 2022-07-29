@@ -18,9 +18,10 @@ TEST(Flags, Ctor_WithOne)
 	ASSERT_NE(car_states, CarState::lights_on);
 }
 
-TEST(Flags, Ctor_WithTwo)
+TEST(Flags, Contains)
 {
 	CarStates car_states = {CarState::engine_on, CarState::lights_on};
 
-	ASSERT_NE(car_states, CarState::lights_on);
+	ASSERT_TRUE(car_states.Contains(CarState::engine_on));
+	ASSERT_FALSE(car_states.Contains(CarState::wipers_on));
 }

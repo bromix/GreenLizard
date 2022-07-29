@@ -23,14 +23,9 @@ namespace GreenLizard
             this->flags = ToFlagType(InternalAdd(0, flags...));
         }
 
-        Flags Add(TEnum flag)
+        bool Contains(TEnum flag) const
         {
-            return *this;
-        }
-
-        bool has(TEnum flag) const
-        {
-            return (underlying(this->flags) & underlying(flag)) != 0;
+            return (ToUnderlyingType(this->flags) & ToUnderlyingType(flag)) != 0;
         }
 
         bool operator==(TEnum flag) const
