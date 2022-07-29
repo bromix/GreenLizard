@@ -23,6 +23,12 @@ namespace GreenLizard
             this->flags = ToFlagType(InternalAdd(0, flags...));
         }
 
+        /**
+         * @brief Determines if the given flag is set.
+         *
+         * @param flag The flag to check
+         * @return true if the flag is set, false otherwise
+         */
         bool Contains(TEnum flag) const
         {
             return (ToUnderlyingType(this->flags) & ToUnderlyingType(flag)) != 0;
@@ -44,7 +50,7 @@ namespace GreenLizard
             return underlying;
         }
 
-        template <typename TEnum, typename ...TEnums >
+        template <typename TEnum, typename... TEnums>
         static constexpr TUnderlying InternalAdd(typename TUnderlying underlying, typename TEnum flag, typename TEnums... flags)
         {
             underlying |= ToUnderlyingType(flag);
