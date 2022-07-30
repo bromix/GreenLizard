@@ -59,3 +59,20 @@ TEST(Flags, AddTwo)
 	car_states.Add(CarState::lights_on, CarState::wipers_on);
 	ASSERT_TRUE(car_states.AllOf(CarState::lights_on, CarState::wipers_on));
 }
+
+TEST(Flags, Remove)
+{
+	CarStates car_states = {CarState::engine_on, CarState::lights_on};
+	ASSERT_TRUE(car_states.Contains(CarState::lights_on));
+	car_states.Remove(CarState::lights_on);
+	ASSERT_FALSE(car_states.Contains(CarState::lights_on));
+}
+
+TEST(Flags, RemoveTwo)
+{
+	CarStates car_states = {CarState::engine_on, CarState::lights_on, CarState::wipers_on};
+	ASSERT_TRUE(car_states.AllOf(CarState::lights_on, CarState::wipers_on));
+	car_states.Remove(CarState::lights_on, CarState::wipers_on);
+	ASSERT_FALSE(car_states.Contains(CarState::lights_on));
+	ASSERT_FALSE(car_states.Contains(CarState::wipers_on));
+}

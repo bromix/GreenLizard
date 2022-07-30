@@ -48,6 +48,26 @@ namespace GreenLizard
         }
 
         /**
+         * @brief Removes one or more flags from the current flags
+         * 
+         * @tparam TEnum 
+         * @tparam TEnums 
+         * @param flag 
+         * @param flags 
+         * @return Flags& 
+         */
+        template <typename TEnum, typename... TEnums>
+        Flags &Remove(TEnum flag, TEnums &&...flags)
+        {
+            auto flagsIterator = {flag, flags...};
+            _flags = ToFlagType(std::accumulate(flagsIterator.begin(), flagsIterator.end(), static_cast<TUnderlying>(_flags), [](TUnderlying &flags, TEnum flag)
+                                                {
+                flags &= ~static_cast<TUnderlying>(flag);
+                return flags; }));
+            return *this;
+        }
+
+        /**
          * @brief Determines if the given flag is set.
          *
          * @param flag The flag to check.
