@@ -15,14 +15,36 @@ namespace GreenLizard
         using TUnderlying = typename std::underlying_type_t<TEnum>;
 
     public:
-        template <typename... TEnums>
-        Flags(TEnums &&...flags)
+        Flags() = delete;
+
+        template <typename TEnum, typename... TEnums>
+        Flags(TEnum flag, TEnums &&...flags)
         {
-            auto flagsIterator = {flags...};
+            auto flagsIterator = {flag, flags...};
             _flags = ToFlagType(std::accumulate(flagsIterator.begin(), flagsIterator.end(), static_cast<TUnderlying>(0), [](TUnderlying &flags, TEnum flag)
                                                 {
                 flags |= static_cast<TUnderlying>(flag);
                 return flags; }));
+        }
+
+        /**
+         * @brief Adds one or more flags to the current flags
+         * 
+         * @tparam TEnum 
+         * @tparam TEnums 
+         * @param flag 
+         * @param flags 
+         * @return Flags& 
+         */
+        template <typename TEnum, typename... TEnums>
+        Flags &Add(TEnum flag, TEnums &&...flags)
+        {
+            auto flagsIterator = {flag, flags...};
+            _flags = ToFlagType(std::accumulate(flagsIterator.begin(), flagsIterator.end(), static_cast<TUnderlying>(_flags), [](TUnderlying &flags, TEnum flag)
+                                                {
+                flags |= static_cast<TUnderlying>(flag);
+                return flags; }));
+            return *this;
         }
 
         /**

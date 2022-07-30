@@ -43,3 +43,19 @@ TEST(Flags, AllOf)
 	ASSERT_TRUE(car_states.AllOf(CarState::engine_on));
 	ASSERT_FALSE(car_states.AllOf(CarState::engine_on, CarState::lights_on, CarState::wipers_on));
 }
+
+TEST(Flags, Add)
+{
+	CarStates car_states = {CarState::engine_on};
+	ASSERT_FALSE(car_states.Contains(CarState::lights_on));
+	car_states.Add(CarState::lights_on);
+	ASSERT_TRUE(car_states.Contains(CarState::lights_on));
+}
+
+TEST(Flags, AddTwo)
+{
+	CarStates car_states = {CarState::engine_on};
+	ASSERT_FALSE(car_states.Contains(CarState::lights_on));
+	car_states.Add(CarState::lights_on, CarState::wipers_on);
+	ASSERT_TRUE(car_states.AllOf(CarState::lights_on, CarState::wipers_on));
+}
