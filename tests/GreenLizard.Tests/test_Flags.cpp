@@ -76,3 +76,11 @@ TEST(Flags, RemoveTwo)
 	ASSERT_FALSE(car_states.Contains(CarState::lights_on));
 	ASSERT_FALSE(car_states.Contains(CarState::wipers_on));
 }
+
+TEST(Flags, CastOperator)
+{
+	CarStates car_states = {CarState::engine_on, CarState::lights_on, CarState::wipers_on};
+	uint8_t value = car_states;
+
+	ASSERT_EQ(value, 0b00000111);
+}

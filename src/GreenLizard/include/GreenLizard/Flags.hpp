@@ -118,6 +118,11 @@ namespace GreenLizard
             return !operator==(flag);
         }
 
+        operator TUnderlying() const
+        {
+            return ToUnderlyingType(_flags);
+        }
+
     private:
         static constexpr TUnderlying ToUnderlyingType(TEnum e)
         {
