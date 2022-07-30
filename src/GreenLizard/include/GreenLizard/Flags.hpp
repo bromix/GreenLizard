@@ -1,6 +1,7 @@
 #pragma once
 
-#include <stdarg.h>
+#include <numeric>
+#include <algorithm>
 
 // based on https://m-peko.github.io/craft-cpp/posts/different-ways-to-define-binary-flags/
 
@@ -14,29 +15,60 @@ namespace GreenLizard
         using TUnderlying = typename std::underlying_type_t<TEnum>;
 
     public:
-        // Flags(TEnum flags) : flags(flags) {}
-
-        // varargs constructor
         template <typename... TEnums>
-        Flags(typename TEnums... flags)
+        Flags(TEnums &&...flags)
         {
-            this->flags = ToFlagType(InternalAdd(0, flags...));
+            auto flagsIterator = {flags...};
+            _flags = ToFlagType(std::accumulate(flagsIterator.begin(), flagsIterator.end(), static_cast<TUnderlying>(0), [](TUnderlying &flags, TEnum flag)
+                                                {
+                flags |= static_cast<TUnderlying>(flag);
+                return flags; }));
         }
 
         /**
          * @brief Determines if the given flag is set.
          *
-         * @param flag The flag to check
-         * @return true if the flag is set, false otherwise
+         * @param flag The flag to check.
+         * @return true if the flag is set, false otherwise.
          */
         bool Contains(TEnum flag) const
         {
-            return (ToUnderlyingType(this->flags) & ToUnderlyingType(flag)) != 0;
+            return (ToUnderlyingType(_flags) & ToUnderlyingType(flag)) != 0;
+        }
+
+        /**
+         * @brief Determine if any of the given flags are set.
+         *
+         * @tparam TEnums
+         * @param flags The flags to check.
+         * @return true if any of the flags are set, false otherwise.
+         */
+        template<typename ...TEnums>
+        bool AnyOf(TEnums&&... flags) const
+        {
+            auto flagsIterator = {flags...};
+            return std::any_of(flagsIterator.begin(), flagsIterator.end(), [this](auto flag)
+                               { return Contains(flag); });
+        }
+
+        /**
+         * @brief Determine if all of the given flags are set.
+         * 
+         * @tparam TEnums 
+         * @param flags The flags to check.
+         * @return true if all of the flags are set, false otherwise.
+         */
+        template<typename ...TEnums>
+        bool AllOf(TEnums&&... flags) const
+        {
+            auto flagsIterator = {flags...};
+            return std::all_of(flagsIterator.begin(), flagsIterator.end(), [this](auto flag)
+                               { return Contains(flag); });
         }
 
         bool operator==(TEnum flag) const
         {
-            return ToUnderlyingType(this->flags) == ToUnderlyingType(flag);
+            return ToUnderlyingType(_flags) == ToUnderlyingType(flag);
         }
 
         bool operator!=(TEnum flag) const
@@ -45,18 +77,6 @@ namespace GreenLizard
         }
 
     private:
-        static constexpr TUnderlying InternalAdd(typename TUnderlying underlying)
-        {
-            return underlying;
-        }
-
-        template <typename TEnum, typename... TEnums>
-        static constexpr TUnderlying InternalAdd(typename TUnderlying underlying, typename TEnum flag, typename TEnums... flags)
-        {
-            underlying |= ToUnderlyingType(flag);
-            return InternalAdd(underlying, flags...);
-        }
-
         static constexpr TUnderlying ToUnderlyingType(TEnum e)
         {
             return static_cast<TUnderlying>(e);
@@ -68,6 +88,6 @@ namespace GreenLizard
         }
 
     private:
-        TEnum flags = static_cast<TEnum>(0);
+        TEnum _flags = static_cast<TEnum>(0);
     };
 }
