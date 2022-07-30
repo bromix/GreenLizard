@@ -85,10 +85,10 @@ namespace GreenLizard
          * @param flags The flags to check.
          * @return true if any of the flags are set, false otherwise.
          */
-        template<typename ...TEnums>
-        bool AnyOf(TEnums&&... flags) const
+        template <typename TEnum, typename... TEnums>
+        bool AnyOf(TEnum flag, TEnums&&... flags) const
         {
-            auto flagsIterator = {flags...};
+            auto flagsIterator = {flag, flags...};
             return std::any_of(flagsIterator.begin(), flagsIterator.end(), [this](auto flag)
                                { return Contains(flag); });
         }
@@ -100,10 +100,10 @@ namespace GreenLizard
          * @param flags The flags to check.
          * @return true if all of the flags are set, false otherwise.
          */
-        template<typename ...TEnums>
-        bool AllOf(TEnums&&... flags) const
+        template <typename TEnum, typename... TEnums>
+        bool AllOf(TEnum flag, TEnums&&... flags) const
         {
-            auto flagsIterator = {flags...};
+            auto flagsIterator = {flag, flags...};
             return std::all_of(flagsIterator.begin(), flagsIterator.end(), [this](auto flag)
                                { return Contains(flag); });
         }

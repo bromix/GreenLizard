@@ -28,6 +28,13 @@
     "xlocmon": "cpp",
     "xlocnum": "cpp",
     "xloctime": "cpp",
-    "xstring": "cpp"
+    "xstring": "cpp",
+    "functional": "cpp",
+    "map": "cpp",
+    "memory": "cpp",
+    "system_error": "cpp",
+    "thread": "cpp",
+    "variant": "cpp",
+    "xstddef": "cpp"
   }
 }
