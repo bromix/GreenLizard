@@ -8,5 +8,17 @@ namespace GreenLizard::IO::Pipes
     {
     public:
         explicit NamedPipeClientStream(const String &pipeName);
+
+        /**
+         * @brief Connects to a waiting server with an infinite time-out value.
+         */
+        void Connect();
+
+        /**
+         * @brief Connects to a waiting server with a specified time-out value.
+         * 
+         * @param timeOut 
+         */
+        void Connect(const uint32_t timeOut);
     };
 }
