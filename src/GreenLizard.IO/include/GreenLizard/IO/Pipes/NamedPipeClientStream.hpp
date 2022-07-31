@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #include <GreenLizard/String.hpp>
 
 namespace GreenLizard::IO::Pipes
@@ -20,5 +22,9 @@ namespace GreenLizard::IO::Pipes
          * @param timeOut 
          */
         void Connect(const uint32_t timeOut);
+
+    private:
+        class Impl;
+        std::shared_ptr<Impl> impl;
     };
 }

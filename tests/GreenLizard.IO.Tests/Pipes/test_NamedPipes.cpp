@@ -7,5 +7,6 @@ using namespace GreenLizard::IO::Pipes;
 TEST(Pipes_NamedPipes, Ctor)
 {
     NamedPipeClientStream stream("test");
+    stream.Connect();
     ASSERT_TRUE(true);
 }

@@ -1,10 +1,13 @@
 #include <stdexcept>
 #include <GreenLizard/IO/Pipes/NamedPipeClientStream.hpp>
 
+#include <Platform/IO/Pipes/NamedPipeClientStreamImpl.hpp>
+
 namespace GreenLizard::IO::Pipes
 {
     NamedPipeClientStream::NamedPipeClientStream(const String &pipeName)
     {
+        impl = std::make_shared<NamedPipeClientStream::Impl>(pipeName);
     }
 
     void NamedPipeClientStream::Connect()
@@ -19,6 +22,6 @@ namespace GreenLizard::IO::Pipes
             throw std::invalid_argument("timeOut");
         }
 
-        //ConnectInternal(timeout, CancellationToken.None, Environment.TickCount);
+        impl->Connect(timeOut);
     }
 }
