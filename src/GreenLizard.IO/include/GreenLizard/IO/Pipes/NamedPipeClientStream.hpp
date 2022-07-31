@@ -3,10 +3,11 @@
 #include <memory>
 
 #include <GreenLizard/String.hpp>
+#include <GreenLizard/IO/IStream.hpp>
 
 namespace GreenLizard::IO::Pipes
 {
-    class NamedPipeClientStream final
+    class NamedPipeClientStream final: public virtual IStream
     {
     public:
         explicit NamedPipeClientStream(const String &pipeName);
@@ -23,6 +24,7 @@ namespace GreenLizard::IO::Pipes
          */
         void Connect(const uint32_t timeOut);
 
+        void Write(const void *buffer, const uint32_t offset, const uint32_t length);
     private:
         class Impl;
         std::shared_ptr<Impl> impl;

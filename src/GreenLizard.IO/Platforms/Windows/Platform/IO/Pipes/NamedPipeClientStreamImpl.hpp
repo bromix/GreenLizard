@@ -16,6 +16,12 @@ namespace GreenLizard::IO::Pipes
             WaitNamedPipeA("\\\\.\\pipe\\ashampoo-connect-service-hub", timeOut);
         }
 
+        void Write(const void *buffer, const uint32_t offset, const uint32_t length)
+        {
+            DWORD bytesWritten = 0;
+            WriteFile(pipeHandle, buffer, length, &bytesWritten, NULL);
+        }
+
     private:
         HANDLE pipeHandle = nullptr;
     };

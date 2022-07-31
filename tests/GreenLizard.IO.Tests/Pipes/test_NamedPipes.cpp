@@ -4,9 +4,15 @@
 
 using namespace GreenLizard::IO::Pipes;
 
+void test(GreenLizard::IO::IStream& stream)
+{
+    stream.Write("Hello World!", 0, 12);
+}
+
 TEST(Pipes_NamedPipes, Ctor)
 {
     NamedPipeClientStream stream("test");
     stream.Connect();
+    test(stream);
     ASSERT_TRUE(true);
 }

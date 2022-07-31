@@ -24,4 +24,9 @@ namespace GreenLizard::IO::Pipes
 
         impl->Connect(timeOut);
     }
+
+    void NamedPipeClientStream::Write(const void *buffer, const uint32_t offset, const uint32_t length)
+    {
+        impl->Write(buffer, offset, length);
+    }
 }
