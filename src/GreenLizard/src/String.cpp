@@ -2,10 +2,14 @@
 
 namespace GreenLizard
 {
+    String::String()
+    {
+    }
+
     String::String(const char *string)
         : _string(string)
     {
     }
-    
+
     String::String(const std::string &string) : _string(string){};
 }

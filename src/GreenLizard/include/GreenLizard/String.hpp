@@ -7,6 +7,7 @@ namespace GreenLizard
     class String final
     {
     public:
+        String();
         String(const char *string);
         String(const std::string &string);
 

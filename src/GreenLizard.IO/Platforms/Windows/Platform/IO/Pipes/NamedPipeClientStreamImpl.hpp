@@ -23,6 +23,7 @@ namespace GreenLizard::IO::Pipes
         }
 
     private:
+        String pipeName;
         HANDLE pipeHandle = nullptr;
     };
 }
