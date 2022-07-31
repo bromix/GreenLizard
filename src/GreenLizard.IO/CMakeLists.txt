@@ -1,14 +1,15 @@
-project(GreenLizard.IO.Pipes VERSION 0.0.0)
+project(GreenLizard.IO VERSION 0.0.0)
 
 add_library(${PROJECT_NAME} STATIC "")
 
-file(GLOB_RECURSE Source_Files "src/*.cpp")
-file(GLOB_RECURSE Include_Files "include/GreenLizard/Win32/*.hpp")
+file(GLOB_RECURSE Source_Files
+    "src/*.cpp"
+    "include/GreenLizard/**/*.hpp"
+)
 
 target_sources(${PROJECT_NAME}
     PRIVATE
         ${Source_Files}
-        ${Include_Files}
 )
 
 target_link_libraries(${PROJECT_NAME}

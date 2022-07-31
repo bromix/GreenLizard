@@ -4,7 +4,7 @@
 
 using namespace GreenLizard::IO::Pipes;
 
-TEST(NamedPipes, Ctor)
+TEST(Pipes_NamedPipes, Ctor)
 {
     NamedPipeClientStream stream("test");
     ASSERT_TRUE(true);
