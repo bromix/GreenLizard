@@ -39,8 +39,7 @@ namespace GreenLizard {
         this->stringBuffer = GreenLizard::Encoding::Convert<Environment::CharacterType>(string);
     }
 
-    String operator+(const String &lhs, const String &rhs)
-    {
+    String operator+(const String &lhs, const String &rhs) {
         return rhs.Prepend(lhs);
     }
 }
