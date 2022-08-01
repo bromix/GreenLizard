@@ -11,7 +11,7 @@ void test(GreenLizard::IO::IStream& stream)
 
 TEST(Pipes_NamedPipes, Ctor)
 {
-    NamedPipeClientStream stream("test");
+    NamedPipeClientStream stream(L"test");
     stream.Connect();
     test(stream);
     ASSERT_TRUE(true);

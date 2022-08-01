@@ -17,8 +17,8 @@ namespace GreenLizard
     public:
         Flags() = delete;
 
-        template <typename TEnum, typename... TEnums>
-        Flags(TEnum flag, TEnums &&...flags)
+        template <typename TEnum2, typename... TEnums>
+        Flags(TEnum2 flag, TEnums &&...flags)
         {
             auto flagsIterator = {flag, flags...};
             _flags = ToFlagType(std::accumulate(flagsIterator.begin(), flagsIterator.end(), static_cast<TUnderlying>(0), [](TUnderlying &flags, TEnum flag)
@@ -36,8 +36,8 @@ namespace GreenLizard
          * @param flags 
          * @return Flags& 
          */
-        template <typename TEnum, typename... TEnums>
-        Flags &Add(TEnum flag, TEnums &&...flags)
+        template <typename TEnum2, typename... TEnums>
+        Flags &Add(TEnum2 flag, TEnums &&...flags)
         {
             auto flagsIterator = {flag, flags...};
             _flags = ToFlagType(std::accumulate(flagsIterator.begin(), flagsIterator.end(), static_cast<TUnderlying>(_flags), [](TUnderlying &flags, TEnum flag)
@@ -56,8 +56,8 @@ namespace GreenLizard
          * @param flags 
          * @return Flags& 
          */
-        template <typename TEnum, typename... TEnums>
-        Flags &Remove(TEnum flag, TEnums &&...flags)
+        template <typename TEnum2, typename... TEnums>
+        Flags &Remove(TEnum2 flag, TEnums &&...flags)
         {
             auto flagsIterator = {flag, flags...};
             _flags = ToFlagType(std::accumulate(flagsIterator.begin(), flagsIterator.end(), static_cast<TUnderlying>(_flags), [](TUnderlying &flags, TEnum flag)
@@ -85,8 +85,8 @@ namespace GreenLizard
          * @param flags The flags to check.
          * @return true if any of the flags are set, false otherwise.
          */
-        template <typename TEnum, typename... TEnums>
-        bool AnyOf(TEnum flag, TEnums&&... flags) const
+        template <typename TEnum2, typename... TEnums>
+        bool AnyOf(TEnum2 flag, TEnums&&... flags) const
         {
             auto flagsIterator = {flag, flags...};
             return std::any_of(flagsIterator.begin(), flagsIterator.end(), [this](auto flag)
@@ -100,8 +100,8 @@ namespace GreenLizard
          * @param flags The flags to check.
          * @return true if all of the flags are set, false otherwise.
          */
-        template <typename TEnum, typename... TEnums>
-        bool AllOf(TEnum flag, TEnums&&... flags) const
+        template <typename TEnum2, typename... TEnums>
+        bool AllOf(TEnum2 flag, TEnums&&... flags) const
         {
             auto flagsIterator = {flag, flags...};
             return std::all_of(flagsIterator.begin(), flagsIterator.end(), [this](auto flag)
