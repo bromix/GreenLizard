@@ -38,9 +38,6 @@ namespace GreenLizard {
          */
         String(std::basic_string<Environment::CharacterType> &&string);
 
-        bool operator==(const String &other) const;
-
-        bool operator!=(const String &other) const;
 
         /**
          * @brief Check if the string is null.
@@ -48,7 +45,17 @@ namespace GreenLizard {
          */
         bool IsNull() const;
 
+        /**
+         * @brief Prepend a string to this string.
+         * @param other The string to prepend.
+         * @return The resulting string.
+         */
         String Prepend(const String &other) const;
+
+        bool operator==(const String &other) const;
+
+        bool operator!=(const String &other) const;
+
     private:
         class Encoding;
 
