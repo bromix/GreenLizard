@@ -22,4 +22,12 @@ namespace GreenLizard {
         return stringBuffer.has_value() == false;
     }
 
+    bool String::operator==(const String &other) const {
+        return stringBuffer.value() == other.stringBuffer.value();
+    }
+
+    bool String::operator!=(const String &other) const {
+        return operator==(other) == false;
+    }
+
 }

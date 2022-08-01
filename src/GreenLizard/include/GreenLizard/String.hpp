@@ -33,6 +33,9 @@ namespace GreenLizard {
          */
         String(const wchar_t *string);
 
+        bool operator==(const String& other) const;
+        bool operator!=(const String& other) const;
+
         /**
          * @brief Check if the string is null.
          * @return True if the string is null, false otherwise.
