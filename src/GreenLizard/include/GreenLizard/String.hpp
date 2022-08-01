@@ -26,15 +26,21 @@ namespace GreenLizard {
         /**
          * @brief Constructor from char*.
          */
-        String(const char* string);
+        String(const char *string);
 
         /**
          * @brief Constructor from wchar_t*.
          */
         String(const wchar_t *string);
 
-        bool operator==(const String& other) const;
-        bool operator!=(const String& other) const;
+        /**
+         * @brief Move constructor.
+         */
+        String(std::basic_string<wchar_t> &&string);
+
+        bool operator==(const String &other) const;
+
+        bool operator!=(const String &other) const;
 
         /**
          * @brief Check if the string is null.
@@ -42,8 +48,12 @@ namespace GreenLizard {
          */
         bool IsNull() const;
 
+        String Prepend(const String &other) const;
     private:
         class Encoding;
+
         std::optional<std::basic_string<Environment::CharacterType>> stringBuffer;
     };
+
+    String operator+(const String &lhs, const String &rhs);
 }

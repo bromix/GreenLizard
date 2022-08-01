@@ -11,7 +11,7 @@ void test(GreenLizard::IO::IStream& stream)
 
 TEST(Pipes_NamedPipes, Ctor)
 {
-    NamedPipeClientStream stream(L"test");
+    NamedPipeClientStream stream("ashampoo-connect-service-hub");
     stream.Connect();
     test(stream);
     ASSERT_TRUE(true);

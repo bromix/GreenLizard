@@ -6,11 +6,7 @@ file(GLOB_RECURSE Source_Files
         "src/*.cpp" "src/*.hpp"
         "include/GreenLizard/*.hpp")
 
-if (WIN32)
-    file(GLOB_RECURSE Platform_Source_Files
-            "Platforms/Windows/*.cpp" "Platforms/Windows/*.hpp"
-            )
-endif ()
+add_subdirectory(Platforms)
 
 target_compile_features(${PROJECT_NAME}
         PUBLIC
@@ -20,7 +16,6 @@ target_compile_features(${PROJECT_NAME}
 target_sources(${PROJECT_NAME}
         PRIVATE
         ${Source_Files}
-        ${Platform_Source_Files}
         )
 
 target_include_directories(${PROJECT_NAME}

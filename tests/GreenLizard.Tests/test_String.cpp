@@ -38,3 +38,9 @@ TEST(String, Ctor_char) {
     ASSERT_EQ(name, "GreenLizard");
     ASSERT_EQ(name, L"GreenLizard");
 }
+
+TEST(String, Append){
+    String name = "Lizard";
+    String fullName = "Green " + name;
+    ASSERT_EQ(fullName, "Green Lizard");
+}

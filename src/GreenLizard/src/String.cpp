@@ -30,4 +30,17 @@ namespace GreenLizard {
         return operator==(other) == false;
     }
 
+    String String::Prepend(const String &other) const {
+        auto result = other.stringBuffer.value() + stringBuffer.value();
+        return String(std::move(result));
+    }
+
+    String::String(std::basic_string<wchar_t> &&string) {
+        this->stringBuffer = GreenLizard::Encoding::Convert<Environment::CharacterType>(string);
+    }
+
+    String operator+(const String &lhs, const String &rhs)
+    {
+        return rhs.Prepend(lhs);
+    }
 }

@@ -7,7 +7,7 @@ namespace GreenLizard::IO::Pipes
 {
     NamedPipeClientStream::NamedPipeClientStream(const String &pipeName)
     {
-        impl = std::make_shared<NamedPipeClientStream::Impl>(pipeName);
+        this->impl = std::make_shared<NamedPipeClientStream::Impl>(pipeName);
     }
 
     void NamedPipeClientStream::Connect()
