@@ -56,9 +56,10 @@ namespace GreenLizard {
 
         bool operator!=(const String &other) const;
 
-    private:
-        class Encoding;
+        // FIXME: I don't like this.
+        const Environment::CharacterType *c_str() const;
 
+    private:
         std::optional<std::basic_string<Environment::CharacterType>> stringBuffer;
     };
 

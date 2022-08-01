@@ -39,6 +39,10 @@ namespace GreenLizard {
         this->stringBuffer = GreenLizard::Encoding::Convert<Environment::CharacterType>(string);
     }
 
+    const Environment::CharacterType *String::c_str() const {
+        return stringBuffer.value().c_str();
+    }
+
     String operator+(const String &lhs, const String &rhs) {
         return rhs.Prepend(lhs);
     }

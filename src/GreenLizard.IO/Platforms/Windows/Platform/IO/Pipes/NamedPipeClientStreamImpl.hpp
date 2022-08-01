@@ -13,8 +13,8 @@ namespace GreenLizard::IO::Pipes
 
         void Connect(const uint32_t timeOut)
         {
-            //pipeHandle = CreateFile(pipeName, GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, NULL);
-            WaitNamedPipeA("\\\\.\\pipe\\ashampoo-connect-service-hub", timeOut);
+            pipeHandle = CreateFile(pipeName.c_str(), GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, NULL);
+            WaitNamedPipe(pipeName.c_str(), timeOut);
         }
 
         void Write(const void *buffer, const uint32_t offset, const uint32_t length)
