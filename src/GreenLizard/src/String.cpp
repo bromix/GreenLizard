@@ -35,7 +35,7 @@ namespace GreenLizard {
         return String(std::move(result));
     }
 
-    String::String(std::basic_string<wchar_t> &&string) {
+    String::String(std::basic_string<Environment::CharacterType> &&string) {
         this->stringBuffer = GreenLizard::Encoding::Convert<Environment::CharacterType>(string);
     }
 

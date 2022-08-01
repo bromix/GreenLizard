@@ -36,7 +36,7 @@ namespace GreenLizard {
         /**
          * @brief Move constructor.
          */
-        String(std::basic_string<wchar_t> &&string);
+        String(std::basic_string<Environment::CharacterType> &&string);
 
         bool operator==(const String &other) const;
 
