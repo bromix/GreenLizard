@@ -3,6 +3,8 @@
 #include <string>
 #include <optional>
 
+#include "Environment.hpp"
+
 namespace GreenLizard {
     class String final {
     public:
@@ -32,17 +34,13 @@ namespace GreenLizard {
         String(const wchar_t *string);
 
         /**
-         * @brief The underlying type.
-         */
-        using UnderlyingType = wchar_t;
-
-        /**
          * @brief Check if the string is null.
          * @return True if the string is null, false otherwise.
          */
         bool IsNull() const;
 
     private:
-        std::optional<std::basic_string<UnderlyingType>> stringBuffer;
+        class Encoding;
+        std::optional<std::basic_string<Environment::CharacterType>> stringBuffer;
     };
 }
