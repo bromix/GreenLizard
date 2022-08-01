@@ -2,8 +2,7 @@ project(GreenLizard VERSION 0.0.0)
 
 add_library(${PROJECT_NAME} STATIC "")
 
-file(GLOB_RECURSE GreenLizard_Source_Files "src/*.cpp")
-file(GLOB_RECURSE GreenLizard_Include_Files "include/GreenLizard/*.hpp")
+file(GLOB_RECURSE Source_Files "src/*.cpp" "include/GreenLizard/*.hpp")
 
 target_compile_features(${PROJECT_NAME}
     PUBLIC
@@ -12,8 +11,7 @@ target_compile_features(${PROJECT_NAME}
 
 target_sources(${PROJECT_NAME}
     PRIVATE
-        ${GreenLizard_Source_Files}
-        ${GreenLizard_Include_Files}
+        ${Source_Files}
 )
 
 target_include_directories(${PROJECT_NAME}

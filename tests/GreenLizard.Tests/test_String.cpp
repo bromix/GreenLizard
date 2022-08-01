@@ -26,7 +26,9 @@ TEST(String, Ctor_nullptr_of_wchar_t) {
 TEST(String, Ctor_wchar_t) {
     String name = L"GreenLizard";
     ASSERT_FALSE(name.IsNull());
+}
 
-    name = nullptr;
-    ASSERT_TRUE(name.IsNull());
+TEST(String, Ctor_char) {
+    String name = "GreenLizard";
+    ASSERT_FALSE(name.IsNull());
 }
