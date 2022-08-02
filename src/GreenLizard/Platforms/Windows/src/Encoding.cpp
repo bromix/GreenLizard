@@ -1,6 +1,7 @@
 #include <string>
-#include "Windows.hpp"
-#include "../../src/Encoding.hpp"
+
+#include <GreenLizard/Platform/Windows.hpp>
+#include "../../../src/Encoding.hpp"
 
 namespace GreenLizard
 {

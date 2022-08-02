@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Win32.hpp"
+#include <GreenLizard/Platform/Windows.hpp>
 
 namespace GreenLizard::Win32
 {

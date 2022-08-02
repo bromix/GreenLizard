@@ -1,5 +1,5 @@
-#include "../../../Windows.hpp"
-#include <GreenLizard/String.hpp>
+#include "GreenLizard/Platform/Windows.hpp"
+#include "GreenLizard/String.hpp"
 
 namespace GreenLizard::IO::Pipes
 {

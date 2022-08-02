@@ -1,7 +1,6 @@
 #include <stdexcept>
 #include <GreenLizard/IO/Pipes/NamedPipeClientStream.hpp>
-
-#include <Platform/IO/Pipes/NamedPipeClientStreamImpl.hpp>
+#include <GreenLizard/IO/Pipes/NamedPipeClientStreamImpl.hpp>
 
 namespace GreenLizard::IO::Pipes
 {
