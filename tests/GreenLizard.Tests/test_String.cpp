@@ -1,7 +1,3 @@
-//
-// Created by mbr on 01/08/2022.
-//
-
 #include <gtest/gtest.h>
 #include <GreenLizard/String.hpp>
 

@@ -2,11 +2,13 @@ project(GreenLizard.Tests VERSION 0.0.0)
 
 add_executable(${PROJECT_NAME} "")
 
-file(GLOB_RECURSE GreenLizard_Tests_Files "test_*.cpp")
+add_subdirectory(Platforms)
+
+file(GLOB_RECURSE Tests_Files "test_*.cpp")
 
 target_sources(${PROJECT_NAME}
     PRIVATE
-        ${GreenLizard_Tests_Files}
+        ${Tests_Files}
 )
 
 find_package(GTest CONFIG REQUIRED)
