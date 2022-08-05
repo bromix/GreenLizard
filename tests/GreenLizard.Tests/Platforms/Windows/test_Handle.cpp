@@ -6,13 +6,15 @@ using namespace GreenLizard;
 TEST(Handle, Ctor_default) {
     Platform::Handle handle;
     ASSERT_TRUE(handle.IsNull());
-    ASSERT_TRUE(handle.IsInvalid());
+    ASSERT_FALSE(handle.IsInvalid());
+    ASSERT_TRUE(handle.IsNullOrInvalid());
 }
 
 TEST(Handle, Ctor_nullptr) {
     Platform::Handle handle = nullptr;
     ASSERT_TRUE(handle.IsNull());
-    ASSERT_TRUE(handle.IsInvalid());
+    ASSERT_FALSE(handle.IsInvalid());
+    ASSERT_TRUE(handle.IsNullOrInvalid());
 }
 
 TEST(Handle, Ctor_InvalidHandle) {

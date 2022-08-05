@@ -55,6 +55,8 @@ namespace GreenLizard::Platform {
          */
         [[nodiscard]] bool IsNull() const;
 
+        bool IsNullOrInvalid() const;
+
         /**
          * @brief Cast to ::HANDLE.
          */

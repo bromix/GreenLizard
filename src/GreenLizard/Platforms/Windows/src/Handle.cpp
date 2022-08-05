@@ -9,11 +9,15 @@ namespace GreenLizard {
     }
 
     bool Platform::Handle::IsInvalid() const {
-        return IsNull() || handle == INVALID_HANDLE_VALUE;
+        return handle == INVALID_HANDLE_VALUE;
     }
 
     bool Platform::Handle::IsNull() const {
         return handle == nullptr;
+    }
+
+    bool Platform::Handle::IsNullOrInvalid() const {
+        return IsNull() || IsInvalid();
     }
 
     Platform::Handle &Platform::Handle::operator=(Platform::Handle &&other) {
