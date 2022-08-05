@@ -43,6 +43,10 @@ namespace GreenLizard {
         return stringBuffer.value().c_str();
     }
 
+    bool String::IsEmpty() {
+        return stringBuffer.value().empty();
+    }
+
     String operator+(const String &lhs, const String &rhs) {
         return rhs.Prepend(lhs);
     }

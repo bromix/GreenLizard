@@ -43,14 +43,20 @@ namespace GreenLizard {
          * @brief Check if the string is null.
          * @return True if the string is null, false otherwise.
          */
-        bool IsNull() const;
+        [[nodiscard]] bool IsNull() const;
 
         /**
          * @brief Prepend a string to this string.
          * @param other The string to prepend.
          * @return The resulting string.
          */
-        String Prepend(const String &other) const;
+        [[nodiscard]] String Prepend(const String &other) const;
+
+        /**
+         * @brief Determine if the string is empty.
+         * @return True if the string is empty, false otherwise.
+         */
+        bool IsEmpty();
 
         bool operator==(const String &other) const;
 
@@ -58,6 +64,7 @@ namespace GreenLizard {
 
         // FIXME: I don't like this.
         const Environment::CharacterType *c_str() const;
+
 
     private:
         std::optional<std::basic_string<Environment::CharacterType>> stringBuffer;

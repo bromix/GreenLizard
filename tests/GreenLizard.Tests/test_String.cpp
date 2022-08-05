@@ -3,23 +3,27 @@
 
 using namespace GreenLizard;
 
-TEST(String, Ctor_default) {
+TEST(String, Ctor_default)
+{
     String name;
     ASSERT_TRUE(name.IsNull());
 }
 
-TEST(String, Ctor_nullptr) {
+TEST(String, Ctor_nullptr)
+{
     String name = nullptr;
     ASSERT_TRUE(name.IsNull());
 }
 
-TEST(String, Ctor_nullptr_of_wchar_t) {
+TEST(String, Ctor_nullptr_of_wchar_t)
+{
     wchar_t *buffer = nullptr;
     String name = buffer;
     ASSERT_TRUE(name.IsNull());
 }
 
-TEST(String, Ctor_wchar_t) {
+TEST(String, Ctor_wchar_t)
+{
     String name = L"GreenLizard";
     ASSERT_FALSE(name.IsNull());
 
@@ -27,7 +31,8 @@ TEST(String, Ctor_wchar_t) {
     ASSERT_EQ(name, L"GreenLizard");
 }
 
-TEST(String, Ctor_char) {
+TEST(String, Ctor_char)
+{
     String name = "GreenLizard";
     ASSERT_FALSE(name.IsNull());
 
@@ -35,7 +40,20 @@ TEST(String, Ctor_char) {
     ASSERT_EQ(name, L"GreenLizard");
 }
 
-TEST(String, Append){
+TEST(String, IsEmpty)
+{
+    String name = "";
+    ASSERT_TRUE(name.IsEmpty());
+}
+
+TEST(String, IsNotEmpty)
+{
+    String name = "Green Lizard";
+    ASSERT_FALSE(name.IsEmpty());
+}
+
+TEST(String, Append)
+{
     String name = "Lizard";
     String fullName = "Green " + name;
     ASSERT_EQ(fullName, "Green Lizard");
