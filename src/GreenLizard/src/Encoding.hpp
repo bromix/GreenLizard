@@ -21,7 +21,7 @@ namespace GreenLizard {
 
         template<typename TTo, typename TFrom, IsSameEncodingType<TTo, TFrom> = true>
         static std::basic_string<TTo> Convert(const std::basic_string<TFrom> &input) {
-            return input;
+            return std::move(input);
         }
 
         template<typename TTo, typename TFrom, IsNotSameEncodingType<TTo, TFrom> = true>
