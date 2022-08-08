@@ -31,9 +31,23 @@ namespace GreenLizard
 		String(const char* string);
 
 		/**
+		 * @brief Constructor from char*
+		 * @param string The string to copy.
+		 * @param length The length of the string to copy.
+		 */
+		String(const char* string, size_t length);
+
+		/**
 		 * @brief Constructor from wchar_t*.
 		 */
 		String(const wchar_t* string);
+
+		/**
+		 * @brief Constructor from wchar_t*.
+		 * @param string The string to copy.
+		 * @param length The length of the string to copy.
+		 */
+		String(const wchar_t* string, size_t length);
 
 		/**
 		 * @brief Move constructor.

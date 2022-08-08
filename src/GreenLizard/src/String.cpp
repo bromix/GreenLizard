@@ -16,11 +16,29 @@ namespace GreenLizard
 		}
 	}
 
+	String::String(const char* string, size_t length)
+	{
+		if (string != nullptr)
+		{
+			std::basic_string<char> buffer(string, length);
+			this->stringBuffer = GreenLizard::Encoding::Convert<Environment::CharacterType>(buffer);
+		}
+	}
+
 	String::String(const wchar_t* string)
 	{
 		if (string != nullptr)
 		{
 			std::basic_string<wchar_t> buffer(string);
+			this->stringBuffer = GreenLizard::Encoding::Convert<Environment::CharacterType>(buffer);
+		}
+	}
+
+	String::String(const wchar_t* string, size_t length)
+	{
+		if (string != nullptr)
+		{
+			std::basic_string<wchar_t> buffer(string, length);
 			this->stringBuffer = GreenLizard::Encoding::Convert<Environment::CharacterType>(buffer);
 		}
 	}
