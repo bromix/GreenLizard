@@ -7,7 +7,7 @@ namespace GreenLizard::Win32
 	{
 		validateRegistryView(view);
 
-		HKEY hKey = (HKEY)(ULONG_PTR)((LONG)hive);
+		HKEY hKey = (HKEY)hive;
 		return CreateRef<RegistryKey>(hKey, view);
 	}
 
@@ -39,7 +39,8 @@ namespace GreenLizard::Win32
 			auto status = RegEnumKeyEx(hKey, index, &buffer[0], &bufferSize, nullptr, nullptr, nullptr, nullptr);
 			if (status == ERROR_SUCCESS)
 			{
-				output.emplace_back(buffer.c_str());
+				String keyName(buffer.c_str(), bufferSize);
+				output.emplace_back(std::move(keyName));
 				index++;
 				continue;
 			}
