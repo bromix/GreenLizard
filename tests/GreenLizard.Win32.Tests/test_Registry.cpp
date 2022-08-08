@@ -3,11 +3,10 @@
 
 using namespace GreenLizard::Win32;
 
-TEST(Registry, Ctor)
+TEST(Registry, GetSubKeyNames)
 {
     auto key = RegistryKey::OpenBaseKey(RegistryHive::CurrentUser, RegistryView::Default);
 
 	auto keyNames = key->GetSubKeyNames();
-    
-    ASSERT_TRUE(true);
+	ASSERT_FALSE(keyNames.empty());
 }

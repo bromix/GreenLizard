@@ -32,7 +32,7 @@ namespace GreenLizard::Win32
 
 		DWORD index = 0;
 		std::wstring buffer(MAX_PATH, '\0');
-		DWORD   bufferSize = buffer.length();
+		DWORD bufferSize = buffer.length();
 		do
 		{
 			bufferSize = buffer.length();
