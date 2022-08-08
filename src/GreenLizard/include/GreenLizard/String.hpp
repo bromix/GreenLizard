@@ -55,6 +55,18 @@ namespace GreenLizard
 		String(std::basic_string<Environment::CharacterType>&& string);
 
 		/**
+		 * @brief Copy constructor.
+		 * @param string The string to copy.
+		 */
+		String(const String& other);
+
+		/**
+		 * @brief Copy operator.
+		 * @param other The string to copy.
+		 */
+		String& operator=(const String& other);
+
+		/**
 		 * @brief Move constructor.
 		 * @param other
 		 */

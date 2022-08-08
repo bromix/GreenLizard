@@ -48,6 +48,16 @@ namespace GreenLizard
 		this->stringBuffer = GreenLizard::Encoding::Convert<Environment::CharacterType>(string);
 	}
 
+	String::String(const String& other) : stringBuffer(other.stringBuffer)
+	{
+	}
+
+	String& String::operator=(const String& other)
+	{
+		this->stringBuffer = other.stringBuffer;
+		return *this;
+	}
+
 	String::String(String&& other) noexcept: stringBuffer(std::move(other.stringBuffer))
 	{
 	}
