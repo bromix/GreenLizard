@@ -44,8 +44,12 @@ namespace GreenLizard
 		 * @brief Move constructor.
 		 * @param other
 		 */
-		String(String&& other) noexcept ;
+		String(String&& other) noexcept;
 
+		/**
+		 * @brief Move operator.
+		 * @param other
+		 */
 		String& operator=(String&& other) noexcept;
 
 		/**
@@ -67,8 +71,16 @@ namespace GreenLizard
 		 */
 		bool IsEmpty();
 
+		/**
+		 * @brief Determine if the given string is equal to this string.
+		 * @return True if the strings are equal, false otherwise.
+		 */
 		bool operator==(const String& other) const;
 
+		/**
+		 * @brief Determine if the given string is not equal to this string.
+		 * @return True if the strings are not equal, false otherwise.
+		 */
 		bool operator!=(const String& other) const;
 
 		// FIXME: I don't like this.
