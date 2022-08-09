@@ -47,6 +47,10 @@ namespace GreenLizard::Win32
 		 */
 		Ref<RegistryKey> OpenSubKey(const String& subKeyName) const;
 
+		Ref<RegistryValue> GetValue(const String& valueName) const;
+
+		String GetStringValue(const String& valueName) const;
+
 		/**
 		 * @brief Determine if the registry key is a system key.
 		 * @return True if the registry key is a system key, false otherwise.

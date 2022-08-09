@@ -158,4 +158,62 @@ namespace GreenLizard::Win32
 
 		throw std::invalid_argument("Invalid registry value kind");
 	}
+
+	Ref<RegistryValue> RegistryKey::GetValue(const String& valueName) const
+	{
+		// get the value kind and value via RegQueryValueExW.
+		DWORD type = 0;
+		DWORD size = 0;
+		auto status = ::RegQueryValueExW(hKey, valueName.c_str(), nullptr, &type, nullptr, &size);
+		if (status != ERROR_SUCCESS)
+			throw Platform::Win32Exception(status);
+
+		// allocate a buffer for the value.
+		std::vector<BYTE> buffer(size);
+		status = ::RegQueryValueExW(hKey, valueName.c_str(), nullptr, &type, buffer.data(), &size);
+		if (status != ERROR_SUCCESS)
+			throw Platform::Win32Exception(status);
+
+		// return std::string of buffer is type is String
+		if (type == REG_SZ)
+		{
+			String stringValue(reinterpret_cast<const wchar_t*>(buffer.data()), size / sizeof(wchar_t));
+			return CreateRef<RegistryValue>(std::move(stringValue), RegistryValueKind::String);
+		}
+		else if (type == REG_EXPAND_SZ)
+		{
+			String stringValue(reinterpret_cast<const wchar_t*>(buffer.data()), size / sizeof(wchar_t));
+			return CreateRef<RegistryValue>(std::move(stringValue), RegistryValueKind::ExpandString);
+		}
+		else if (type == REG_MULTI_SZ)
+		{
+			String stringValue(reinterpret_cast<const wchar_t*>(buffer.data()), size / sizeof(wchar_t));
+			return CreateRef<RegistryValue>(std::move(stringValue), RegistryValueKind::MultiString);
+		}
+//		else if (type == REG_DWORD)
+//			return RegistryValue(RegistryValueKind::DWord, *reinterpret_cast<const DWORD*>(buffer.data()));
+//		else if (type == REG_QWORD)
+//			return RegistryValue(RegistryValueKind::QWord, *reinterpret_cast<const ULONGLONG*>(buffer.data()));
+//		else if (type == REG_BINARY)
+//			return RegistryValue(RegistryValueKind::Binary, buffer);
+//		else if (type == REG_NONE)
+//			return RegistryValue(RegistryValueKind::None, String());
+//		else
+//			throw std::invalid_argument("Invalid registry value kind");
+
+		return nullptr;
+	}
+
+	String RegistryKey::GetStringValue(const String& valueName) const
+	{
+		auto value = GetValue(valueName);
+		auto valueKind = value->Kind();
+		if (valueKind == RegistryValueKind::String || valueKind == RegistryValueKind::ExpandString
+			|| valueKind == RegistryValueKind::MultiString)
+		{
+			return value->Value<String>();
+		}
+
+		throw std::invalid_argument("Registry value is not a string");
+	}
 }

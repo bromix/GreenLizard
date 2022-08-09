@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <GreenLizard/GreenLizard.hpp>
 #include <GreenLizard/Win32/RegistryKey.hpp>
 
 using namespace GreenLizard::Win32;
@@ -36,4 +37,33 @@ TEST(Registry, GetValueKind)
 
 	valueKind = softwareKey->GetValueKind(R"(ProgramFilesPath)");
 	ASSERT_EQ(valueKind, RegistryValueKind::ExpandString);
+}
+
+TEST(Registry, GetValue)
+{
+	auto currentUserKey = RegistryKey::OpenBaseKey(RegistryHive::LocalMachine, RegistryView::Default);
+	auto softwareKey = currentUserKey->OpenSubKey(R"(SOFTWARE\Microsoft\Windows\CurrentVersion)");
+	auto value = softwareKey->GetValue(R"(CommonFilesDir)");
+	ASSERT_EQ(value->Kind(), RegistryValueKind::String);
+	auto stringValue = value->Value<GreenLizard::String>();
+	ASSERT_FALSE(stringValue.IsNull());
+	ASSERT_FALSE(stringValue.IsEmpty());
+}
+
+TEST(Registry, GetValueNull)
+{
+	auto currentUserKey = RegistryKey::OpenBaseKey(RegistryHive::LocalMachine, RegistryView::Default);
+	auto softwareKey = currentUserKey->OpenSubKey(R"(SOFTWARE\Microsoft\Windows\CurrentVersion)");
+	auto value = softwareKey->GetValue(R"(CommonFilesDir2222)");
+	ASSERT_EQ(value->Kind(), RegistryValueKind::None);
+	auto stringValue = value->Value<nullptr_t>();
+}
+
+TEST(Registry, GetStringValue)
+{
+	auto currentUserKey = RegistryKey::OpenBaseKey(RegistryHive::LocalMachine, RegistryView::Default);
+	auto softwareKey = currentUserKey->OpenSubKey(R"(SOFTWARE\Microsoft\Windows\CurrentVersion)");
+	auto stringValue = softwareKey->GetStringValue(R"(CommonFilesDir)");
+	ASSERT_FALSE(stringValue.IsNull());
+	ASSERT_FALSE(stringValue.IsEmpty());
 }

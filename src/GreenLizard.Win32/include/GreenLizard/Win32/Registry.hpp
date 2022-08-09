@@ -1,6 +1,8 @@
 #pragma once
 
+#include <GreenLizard/GreenLizard.hpp>
 #include <cstdint>
+#include <variant>
 
 namespace GreenLizard::Win32
 {
@@ -32,5 +34,37 @@ namespace GreenLizard::Win32
 		QWord,
 		String,
 		Unknown
+	};
+
+	class RegistryValue
+	{
+	 public:
+		explicit RegistryValue(const String& string, RegistryValueKind kind = RegistryValueKind::String) :
+			kind (kind),
+			value(string)
+		{
+		}
+
+		RegistryValue() = default;
+		RegistryValue(const RegistryValue&) = default;
+		RegistryValue(RegistryValue&&) = default;
+		RegistryValue& operator=(const RegistryValue&) = default;
+		RegistryValue& operator=(RegistryValue&&) = default;
+		~RegistryValue() = default;
+
+		template<typename T>
+		T Value() const
+		{
+			return std::get<T>(value);
+		}
+
+		RegistryValueKind Kind() const
+		{
+			return kind;
+		}
+
+	 private:
+		RegistryValueKind kind = RegistryValueKind::Unknown;
+		std::variant<nullptr_t, String> value = nullptr;
 	};
 }
