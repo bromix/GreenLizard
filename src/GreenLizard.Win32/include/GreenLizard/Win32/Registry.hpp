@@ -21,4 +21,16 @@ namespace GreenLizard::Win32
 		CurrentConfig = 0x80000005,   // HKEY_CURRENT_CONFIG
 		DynData = 0x80000006,         // HKEY_DYN_DATA
 	};
+
+	enum class RegistryValueKind : uint32_t
+	{
+		Binary,
+		DWord,
+		ExpandString,
+		MultiString,
+		None,
+		QWord,
+		String,
+		Unknown
+	};
 }

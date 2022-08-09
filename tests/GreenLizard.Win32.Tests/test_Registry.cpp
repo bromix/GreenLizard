@@ -26,3 +26,14 @@ TEST(Registry, GetValueNames)
 	auto valueNames = softwareKey->GetValueNames();
 	ASSERT_FALSE(valueNames.empty());
 }
+
+TEST(Registry, GetValueKind)
+{
+	auto currentUserKey = RegistryKey::OpenBaseKey(RegistryHive::LocalMachine, RegistryView::Default);
+	auto softwareKey = currentUserKey->OpenSubKey(R"(SOFTWARE\Microsoft\Windows\CurrentVersion)");
+	auto valueKind = softwareKey->GetValueKind(R"(CommonFilesDir)");
+	ASSERT_EQ(valueKind, RegistryValueKind::String);
+
+	valueKind = softwareKey->GetValueKind(R"(ProgramFilesPath)");
+	ASSERT_EQ(valueKind, RegistryValueKind::ExpandString);
+}

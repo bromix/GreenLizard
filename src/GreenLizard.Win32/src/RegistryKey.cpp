@@ -132,4 +132,30 @@ namespace GreenLizard::Win32
 			key.hKey == HKEY_DYN_DATA ||
 			key.hKey == HKEY_CURRENT_USER_LOCAL_SETTINGS;
 	}
+
+	RegistryValueKind RegistryKey::GetValueKind(const String& valueName) const
+	{
+		DWORD type = 0;
+		DWORD size = 0;
+		auto status = ::RegQueryValueExW(hKey, valueName.c_str(), nullptr, &type, nullptr, &size);
+		if (status != ERROR_SUCCESS)
+			throw Platform::Win32Exception(status);
+
+		if (type == REG_SZ)
+			return RegistryValueKind::String;
+		else if (type == REG_DWORD)
+			return RegistryValueKind::DWord;
+		else if (type == REG_QWORD)
+			return RegistryValueKind::QWord;
+		else if (type == REG_BINARY)
+			return RegistryValueKind::Binary;
+		else if (type == REG_MULTI_SZ)
+			return RegistryValueKind::MultiString;
+		else if (type == REG_EXPAND_SZ)
+			return RegistryValueKind::ExpandString;
+		else if (type == REG_NONE)
+			return RegistryValueKind::None;
+
+		throw std::invalid_argument("Invalid registry value kind");
+	}
 }

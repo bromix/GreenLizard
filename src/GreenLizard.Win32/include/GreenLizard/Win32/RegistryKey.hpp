@@ -64,6 +64,13 @@ namespace GreenLizard::Win32
 		 * @return The value names.
 		 */
 		std::vector<String> GetValueNames() const;
+
+		/**
+		 * @brief Get the kind of the value.
+		 * @param valueName The name of the value.
+		 * @return The kind of the value.
+		 */
+		RegistryValueKind GetValueKind(const String& valueName) const;
 	 private:
 
 		static void validateRegistryView(RegistryView view);
