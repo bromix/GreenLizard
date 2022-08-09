@@ -18,3 +18,11 @@ TEST(Registry, OpenSubKey)
 	auto keyNames = softwareKey->GetSubKeyNames();
 	ASSERT_FALSE(keyNames.empty());
 }
+
+TEST(Registry, GetValueNames)
+{
+	auto currentUserKey = RegistryKey::OpenBaseKey(RegistryHive::CurrentUser, RegistryView::Default);
+	auto softwareKey = currentUserKey->OpenSubKey(R"(Software\Microsoft)");
+	auto valueNames = softwareKey->GetValueNames();
+	ASSERT_FALSE(valueNames.empty());
+}

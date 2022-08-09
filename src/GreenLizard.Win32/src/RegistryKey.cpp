@@ -73,6 +73,36 @@ namespace GreenLizard::Win32
 		return output;
 	}
 
+	std::vector<String> RegistryKey::GetValueNames() const
+	{
+		std::vector<String> output;
+
+		DWORD index = 0;
+		std::wstring buffer(MAX_PATH, '\0');
+		DWORD bufferSize = buffer.length();
+		do
+		{
+			bufferSize = buffer.length();
+			auto status = RegEnumValueW(hKey, index, &buffer[0], &bufferSize, nullptr, nullptr, nullptr, nullptr);
+			if (status == ERROR_SUCCESS)
+			{
+				String keyName(buffer.c_str(), bufferSize);
+				output.emplace_back(std::move(keyName));
+				index++;
+				continue;
+			}
+			else if (status == ERROR_NO_MORE_ITEMS)
+			{
+				break;
+			}
+			else
+			{
+				throw Platform::Win32Exception(status);
+			}
+		} while (true);
+		return output;
+	}
+
 	void RegistryKey::Close()
 	{
 		// Don't close system keys.

@@ -58,6 +58,12 @@ namespace GreenLizard::Win32
 		 * @return The sub key names.
 		 */
 		std::vector<String> GetSubKeyNames() const;
+
+		/**
+		 * @brief Get the value names.
+		 * @return The value names.
+		 */
+		std::vector<String> GetValueNames() const;
 	 private:
 
 		static void validateRegistryView(RegistryView view);
