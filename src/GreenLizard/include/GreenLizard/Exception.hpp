@@ -11,6 +11,7 @@ namespace GreenLizard
 		explicit Exception(const String& message);
 
 		const char* what() const override;
+
 		String Message() const;
 	 private:
 		String message;

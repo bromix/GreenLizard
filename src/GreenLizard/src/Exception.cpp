@@ -14,7 +14,7 @@ namespace GreenLizard
 
 	const char* Exception::what() const
 	{
-		if(lazyWhat.empty())
+		if (lazyWhat.empty())
 		{
 			lazyWhat = Encoding::Convert<char, Environment::CharacterType>(message.c_str());
 		}
