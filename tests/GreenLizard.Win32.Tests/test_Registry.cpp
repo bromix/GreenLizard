@@ -10,3 +10,11 @@ TEST(Registry, GetSubKeyNames)
 	auto keyNames = key->GetSubKeyNames();
 	ASSERT_FALSE(keyNames.empty());
 }
+
+TEST(Registry, GetSubKeyNames2)
+{
+	auto key = RegistryKey::OpenBaseKey(RegistryHive::CurrentUser, RegistryView::Default);
+
+	auto keyNames = key->GetSubKeyNames();
+	ASSERT_FALSE(keyNames.empty());
+}
