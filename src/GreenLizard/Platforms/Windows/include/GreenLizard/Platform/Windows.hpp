@@ -41,3 +41,5 @@
 #define NODEFERWINDOWPOS
 #define NOMCX
 #include <Windows.h>
+
+#include "Win32Exception.hpp"

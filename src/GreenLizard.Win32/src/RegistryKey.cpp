@@ -1,6 +1,6 @@
+#include <GreenLizard/Win32/RegistryKey.hpp>
+#include <GreenLizard/Platform/Windows.hpp>
 #include <stdexcept>
-#include "GreenLizard/Win32/RegistryKey.hpp"
-#include "GreenLizard/Platform/Win32Exception.hpp"
 
 namespace GreenLizard::Win32
 {
@@ -15,6 +15,16 @@ namespace GreenLizard::Win32
 
 		HKEY hKey = (HKEY)hive;
 		return CreateRef<RegistryKey>(hKey, view);
+	}
+
+	Ref<RegistryKey> RegistryKey::OpenSubKey(const String& subKeyName) const
+	{
+		HKEY hSubKey = nullptr;
+		auto status = ::RegOpenKeyExW(hKey, subKeyName.c_str(), 0, KEY_READ, &hSubKey);
+		if (status != ERROR_SUCCESS)
+			throw Platform::Win32Exception(status);
+
+		return CreateRef<RegistryKey>(hSubKey, view);
 	}
 
 	void RegistryKey::validateRegistryView(RegistryView view)
@@ -32,6 +42,7 @@ namespace GreenLizard::Win32
 		this->view = view;
 
 	}
+
 	std::vector<String> RegistryKey::GetSubKeyNames() const
 	{
 		std::vector<String> output;
@@ -70,7 +81,9 @@ namespace GreenLizard::Win32
 
 		if (hKey != nullptr)
 		{
-			::RegCloseKey(hKey);
+			auto status = ::RegCloseKey(hKey);
+			if (status != ERROR_SUCCESS)
+				throw Platform::Win32Exception(status);
 			hKey = nullptr;
 		}
 	}

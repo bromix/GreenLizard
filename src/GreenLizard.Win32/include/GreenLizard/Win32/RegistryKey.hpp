@@ -41,6 +41,16 @@ namespace GreenLizard::Win32
 		 */
 		static Ref<RegistryKey> OpenBaseKey(RegistryHive hive, RegistryView view = RegistryView::Default);
 
+		/**
+		 * @brief Opens a sub key.
+		 * @param subKey The name or path of the sub key to open as read-only.
+		 */
+		Ref<RegistryKey> OpenSubKey(const String& subKeyName) const;
+
+		/**
+		 * @brief Determine if the registry key is a system key.
+		 * @return True if the registry key is a system key, false otherwise.
+		 */
 		static bool IsSystemKey(const RegistryKey& key);
 
 		/**
