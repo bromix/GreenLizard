@@ -36,4 +36,21 @@ namespace GreenLizard
 		static auto newLine = String{ "\r\n" };
 		return newLine;
 	}
+
+	String Environment::CurrentDirectory()
+	{
+		auto size = ::GetCurrentDirectoryW(0, nullptr);
+		if (size == 0)
+		{
+			throw Exception("GetCurrentDirectoryW failed");
+		}
+		std::wstring buffer(size, L'\0');
+		if (::GetCurrentDirectoryW(size, buffer.data()) == 0)
+		{
+			throw Exception("GetCurrentDirectoryW failed");
+		}
+
+		// we must subtract 1 because GetCurrentDirectoryW includes the null terminator
+		return { buffer.data(), size - 1 };
+	}
 }

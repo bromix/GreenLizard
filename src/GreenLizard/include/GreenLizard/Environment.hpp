@@ -34,5 +34,7 @@ namespace GreenLizard
 		 * @return The new line character.
 		 */
 		static String NewLine();
+
+		static String CurrentDirectory();
 	};
 }

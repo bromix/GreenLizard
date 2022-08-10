@@ -14,3 +14,9 @@ TEST(Enviroment, UserName)
 	auto userName = Environment::UserName();
 	ASSERT_FALSE(userName.IsEmpty());
 }
+
+TEST(Environment, CurrentDirectory)
+{
+	auto currentDirectory = Environment::CurrentDirectory();
+	ASSERT_FALSE(currentDirectory.IsEmpty());
+}
