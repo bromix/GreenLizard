@@ -1,7 +1,8 @@
 #pragma once
 
 #include <vector>
-#include "Registry.hpp"
+#include "RegistryTypes.hpp"
+#include "RegistryValue.hpp"
 #include "GreenLizard/GreenLizard.hpp"
 #include <GreenLizard/Platform/Windows.hpp>
 
@@ -69,12 +70,6 @@ namespace GreenLizard::Win32
 		 */
 		std::vector<String> GetValueNames() const;
 
-		/**
-		 * @brief Get the kind of the value.
-		 * @param valueName The name of the value.
-		 * @return The kind of the value.
-		 */
-		RegistryValueKind GetValueKind(const String& valueName) const;
 	 private:
 
 		static void validateRegistryView(RegistryView view);
