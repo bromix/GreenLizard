@@ -21,8 +21,18 @@ namespace GreenLizard
 		 * @brief Returns the name of the computer.
 		 * @return The name of the computer.
 		 */
-		[[nodiscard]] static String MachineName();
+		static String MachineName();
 
+		/**
+		 * @brief Returns the name of the user.
+		 * @return The name of the user.
+		 */
 		static String UserName();
+
+		/**
+		 * @brief Returns the new line character.
+		 * @return The new line character.
+		 */
+		static String NewLine();
 	};
 }

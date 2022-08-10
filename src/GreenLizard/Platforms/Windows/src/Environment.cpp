@@ -29,4 +29,11 @@ namespace GreenLizard
 
 		throw Exception("GetUserNameW failed");
 	}
+
+	String Environment::NewLine()
+	{
+		// initialize only once.
+		static auto newLine = String{ "\r\n" };
+		return newLine;
+	}
 }
