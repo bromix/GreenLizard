@@ -1,5 +1,6 @@
 #pragma once
 #include "GreenLizard/Platform/Windows.hpp"
+#include "GreenLizard/Platform/Kernel32.hpp"
 #include "GreenLizard/Platform/Handle.hpp"
 #include "GreenLizard/String.hpp"
 
@@ -19,7 +20,7 @@ namespace GreenLizard::IO::Pipes
 				nullptr);
 			if (pipeHandle.IsInvalid())
 			{
-				throw std::runtime_error("Failed to connect to pipe");
+				throw Platform::Win32Exception(Platform::Kernel32::GetLastError());
 			}
 			::WaitNamedPipe(pipeName.c_str(), timeOut);
 		}

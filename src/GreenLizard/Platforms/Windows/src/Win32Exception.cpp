@@ -4,13 +4,13 @@
 namespace GreenLizard::Platform
 {
 
-	Win32Exception::Win32Exception(int errorCode) :
+	Win32Exception::Win32Exception(uint32_t errorCode) :
 		Exception(Kernel32::GetLastErrorMessage(errorCode)),
 		errorCode(errorCode)
 	{
 	}
 
-	int Win32Exception::ErrorCode() const
+	uint32_t Win32Exception::ErrorCode() const
 	{
 		return errorCode;
 	}

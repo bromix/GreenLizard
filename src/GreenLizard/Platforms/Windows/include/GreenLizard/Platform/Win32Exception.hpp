@@ -6,15 +6,15 @@ namespace GreenLizard::Platform
 	class Win32Exception : public Exception
 	{
 	 public:
-		explicit Win32Exception(int errorCode);
+		explicit Win32Exception(uint32_t errorCode);
 
 		/**
 		 * @brief Get the error code of the exception.
 		 * @return The error code of the exception.
 		 */
-		int ErrorCode() const;
+		uint32_t ErrorCode() const;
 
 	 private:
-		int errorCode = 0;
+		uint32_t errorCode = 0;
 	};
 }

@@ -59,7 +59,7 @@ namespace GreenLizard::Platform
 		bool IsNullOrInvalid() const;
 
 		/**
-		 * @brief Cast to ::HANDLE.
+		 * @brief SafeCast to ::HANDLE.
 		 */
 		operator ::HANDLE() const;
 

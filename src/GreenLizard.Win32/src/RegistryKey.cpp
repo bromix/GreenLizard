@@ -1,6 +1,7 @@
 #include <GreenLizard/Win32/RegistryKey.hpp>
 #include <GreenLizard/Platform/Windows.hpp>
 #include <stdexcept>
+#include "GreenLizard/Numeric.hpp"
 
 namespace GreenLizard::Win32
 {
@@ -166,12 +167,12 @@ namespace GreenLizard::Win32
 		}
 		else if (type == REG_DWORD)
 		{
-			uint32_t intValue = *reinterpret_cast<const uint32_t *>(buffer.data());
+			auto intValue = Numeric::SafeCast<uint32_t>(*reinterpret_cast<const DWORD32 *>(buffer.data()));
 			return CreateRef<RegistryValue>(intValue);
 		}
 		else if (type == REG_QWORD)
 		{
-			uint64_t intValue = *reinterpret_cast<const uint64_t*>(buffer.data());
+			auto intValue = Numeric::SafeCast<uint64_t>(*reinterpret_cast<const DWORD64*>(buffer.data()));
 			return CreateRef<RegistryValue>(intValue);
 		}
 //		else if (type == REG_BINARY)
