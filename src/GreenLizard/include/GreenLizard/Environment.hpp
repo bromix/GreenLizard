@@ -1,22 +1,28 @@
 #pragma once
 
-namespace GreenLizard {
-    class Environment final {
-    public:
-        /**
-         * @brief Default constructor.
-         */
-        Environment() = delete;
+#include "String.hpp"
 
-        /**
-         * @brief Destructor.
-         */
-        ~Environment() = delete;
+namespace GreenLizard
+{
+	class Environment final
+	{
+	 public:
+		/**
+		 * @brief Default constructor.
+		 */
+		Environment() = delete;
 
-#if defined(_WIN32) || defined(_WINDOWS)
-        using CharacterType = wchar_t;
-#else
-        using CharacterType = char;
-#endif
-    };
+		/**
+		 * @brief Destructor.
+		 */
+		~Environment() = delete;
+
+		/**
+		 * @brief Returns the name of the computer.
+		 * @return The name of the computer.
+		 */
+		[[nodiscard]] static String MachineName();
+
+		static String UserName();
+	};
 }

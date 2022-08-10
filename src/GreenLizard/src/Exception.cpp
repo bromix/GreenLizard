@@ -16,7 +16,7 @@ namespace GreenLizard
 	{
 		if (lazyWhat.empty())
 		{
-			lazyWhat = Encoding::Convert<char, Environment::CharacterType>(message.c_str());
+			lazyWhat = Encoding::Convert<char, String::CharacterType>(message.c_str());
 		}
 		return lazyWhat.c_str();
 	}

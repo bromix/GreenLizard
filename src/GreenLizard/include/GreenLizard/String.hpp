@@ -3,13 +3,17 @@
 #include <string>
 #include <optional>
 
-#include "Environment.hpp"
-
 namespace GreenLizard
 {
 	class String final
 	{
 	 public:
+#if defined(_WIN32) || defined(_WINDOWS)
+		using CharacterType = wchar_t;
+#else
+		using CharacterType = char;
+#endif
+
 		/**
 		 * @brief Default constructor.
 		 */
@@ -52,7 +56,7 @@ namespace GreenLizard
 		/**
 		 * @brief Move constructor.
 		 */
-		String(std::basic_string<Environment::CharacterType>&& string);
+		String(std::basic_string<String::CharacterType>&& string);
 
 		/**
 		 * @brief Copy constructor.
@@ -82,14 +86,14 @@ namespace GreenLizard
 		 * @brief Check if the string is null.
 		 * @return True if the string is null, false otherwise.
 		 */
-		bool IsNull() const;
+		[[nodiscard]] bool IsNull() const;
 
 		/**
 		 * @brief Prepend a string to this string.
 		 * @param other The string to prepend.
 		 * @return The resulting string.
 		 */
-		String Prepend(const String& other) const;
+		[[nodiscard]] String Prepend(const String& other) const;
 
 		/**
 		 * @brief Determine if the string is empty.
@@ -109,11 +113,13 @@ namespace GreenLizard
 		 */
 		bool operator!=(const String& other) const;
 
-		// FIXME: I don't like this.
-		const Environment::CharacterType* c_str() const;
-
+		/**
+		 * @brief Returns a pointer to underlying string.
+		 * @return A pointer to underlying string.
+		 */
+		[[nodiscard]] const String::CharacterType* c_str() const;
 	 private:
-		std::optional<std::basic_string<Environment::CharacterType>> stringBuffer;
+		std::optional<std::basic_string<String::CharacterType>> stringBuffer;
 	};
 
 	String operator+(const String& lhs, const String& rhs);

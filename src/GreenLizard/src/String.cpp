@@ -12,7 +12,7 @@ namespace GreenLizard
 		if (string != nullptr)
 		{
 			std::basic_string<char> buffer(string);
-			this->stringBuffer = GreenLizard::Encoding::Convert<Environment::CharacterType>(buffer);
+			this->stringBuffer = GreenLizard::Encoding::Convert<String::CharacterType>(buffer);
 		}
 	}
 
@@ -21,7 +21,7 @@ namespace GreenLizard
 		if (string != nullptr)
 		{
 			std::basic_string<char> buffer(string, length);
-			this->stringBuffer = GreenLizard::Encoding::Convert<Environment::CharacterType>(buffer);
+			this->stringBuffer = GreenLizard::Encoding::Convert<String::CharacterType>(buffer);
 		}
 	}
 
@@ -30,7 +30,7 @@ namespace GreenLizard
 		if (string != nullptr)
 		{
 			std::basic_string<wchar_t> buffer(string);
-			this->stringBuffer = GreenLizard::Encoding::Convert<Environment::CharacterType>(buffer);
+			this->stringBuffer = GreenLizard::Encoding::Convert<String::CharacterType>(buffer);
 		}
 	}
 
@@ -39,13 +39,13 @@ namespace GreenLizard
 		if (string != nullptr)
 		{
 			std::basic_string<wchar_t> buffer(string, length);
-			this->stringBuffer = GreenLizard::Encoding::Convert<Environment::CharacterType>(buffer);
+			this->stringBuffer = GreenLizard::Encoding::Convert<String::CharacterType>(buffer);
 		}
 	}
 
-	String::String(std::basic_string<Environment::CharacterType>&& string)
+	String::String(std::basic_string<String::CharacterType>&& string)
 	{
-		this->stringBuffer = GreenLizard::Encoding::Convert<Environment::CharacterType>(string);
+		this->stringBuffer = GreenLizard::Encoding::Convert<String::CharacterType>(string);
 	}
 
 	String::String(const String& other) : stringBuffer(other.stringBuffer)
@@ -89,7 +89,7 @@ namespace GreenLizard
 		return std::move(result);
 	}
 
-	const Environment::CharacterType* String::c_str() const
+	const String::CharacterType* String::c_str() const
 	{
 		return stringBuffer.value().c_str();
 	}
