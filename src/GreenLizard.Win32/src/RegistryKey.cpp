@@ -164,18 +164,24 @@ namespace GreenLizard::Win32
 			String stringValue(reinterpret_cast<const wchar_t*>(buffer.data()), size / sizeof(wchar_t));
 			return CreateRef<RegistryValue>(std::move(stringValue), RegistryValueKind::MultiString);
 		}
-//		else if (type == REG_DWORD)
-//			return RegistryValue(RegistryValueKind::DWord, *reinterpret_cast<const DWORD*>(buffer.data()));
-//		else if (type == REG_QWORD)
-//			return RegistryValue(RegistryValueKind::QWord, *reinterpret_cast<const ULONGLONG*>(buffer.data()));
+		else if (type == REG_DWORD)
+		{
+			uint32_t intValue = *reinterpret_cast<const uint32_t *>(buffer.data());
+			return CreateRef<RegistryValue>(intValue);
+		}
+		else if (type == REG_QWORD)
+		{
+			uint64_t intValue = *reinterpret_cast<const uint64_t*>(buffer.data());
+			return CreateRef<RegistryValue>(intValue);
+		}
 //		else if (type == REG_BINARY)
 //			return RegistryValue(RegistryValueKind::Binary, buffer);
 //		else if (type == REG_NONE)
 //			return RegistryValue(RegistryValueKind::None, String());
 //		else
-//			throw std::invalid_argument("Invalid registry value kind");
+//
 
-		return nullptr;
+		throw std::invalid_argument("Invalid registry value kind");
 	}
 
 	String RegistryKey::GetStringValue(const String& valueName) const

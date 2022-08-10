@@ -9,6 +9,14 @@ namespace GreenLizard::Win32
 	class RegistryValue
 	{
 	 public:
+		RegistryValue() = delete;
+		RegistryValue(const RegistryValue&) = delete;
+		RegistryValue(RegistryValue&&) = delete;
+		RegistryValue& operator=(const RegistryValue&) = delete;
+		RegistryValue& operator=(RegistryValue&&) = delete;
+
+		explicit RegistryValue(uint32_t value);
+		explicit RegistryValue(uint64_t value);
 		RegistryValue(const String& value, RegistryValueKind kind);
 
 		/**
@@ -28,6 +36,6 @@ namespace GreenLizard::Win32
 		}
 	 private:
 		RegistryValueKind kind = RegistryValueKind::Unknown;
-		std::variant<String> value;
+		std::variant<String, uint64_t, uint32_t> value;
 	};
 }

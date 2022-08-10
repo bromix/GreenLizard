@@ -46,11 +46,11 @@ namespace GreenLizard::Win32
 		 * @brief Opens a sub key.
 		 * @param subKey The name or path of the sub key to open as read-only.
 		 */
-		Ref<RegistryKey> OpenSubKey(const String& subKeyName) const;
+		[[nodiscard]] Ref<RegistryKey> OpenSubKey(const String& subKeyName) const;
 
-		Ref<RegistryValue> GetValue(const String& valueName) const;
+		[[nodiscard]] Ref<RegistryValue> GetValue(const String& valueName) const;
 
-		String GetStringValue(const String& valueName) const;
+		[[nodiscard]] String GetStringValue(const String& valueName) const;
 
 		/**
 		 * @brief Determine if the registry key is a system key.
@@ -62,13 +62,13 @@ namespace GreenLizard::Win32
 		 * @brief Get the sub key names.
 		 * @return The sub key names.
 		 */
-		std::vector<String> GetSubKeyNames() const;
+		[[nodiscard]] std::vector<String> GetSubKeyNames() const;
 
 		/**
 		 * @brief Get the value names.
 		 * @return The value names.
 		 */
-		std::vector<String> GetValueNames() const;
+		[[nodiscard]] std::vector<String> GetValueNames() const;
 
 	 private:
 
