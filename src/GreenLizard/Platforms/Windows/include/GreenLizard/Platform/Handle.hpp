@@ -50,7 +50,7 @@ namespace GreenLizard::Platform
 		[[nodiscard]] bool OwnsHandle() const;
 
 		/**
-		 * @brief SafeCast to ::HANDLE.
+		 * @brief StrictIntCast to ::HANDLE.
 		 */
 		operator ::HANDLE() const;
 

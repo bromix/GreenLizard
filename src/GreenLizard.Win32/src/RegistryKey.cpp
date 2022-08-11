@@ -167,12 +167,12 @@ namespace GreenLizard::Win32
 		}
 		else if (type == REG_DWORD)
 		{
-			auto intValue = Numeric::SafeCast<uint32_t>(*reinterpret_cast<const DWORD32 *>(buffer.data()));
+			auto intValue = Numeric::StrictIntCast<uint32_t>(*reinterpret_cast<const DWORD32*>(buffer.data()));
 			return CreateRef<RegistryValue>(intValue);
 		}
 		else if (type == REG_QWORD)
 		{
-			auto intValue = Numeric::SafeCast<uint64_t>(*reinterpret_cast<const DWORD64*>(buffer.data()));
+			auto intValue = Numeric::StrictIntCast<uint64_t>(*reinterpret_cast<const DWORD64*>(buffer.data()));
 			return CreateRef<RegistryValue>(intValue);
 		}
 //		else if (type == REG_BINARY)

@@ -9,7 +9,7 @@ namespace GreenLizard
 	String Environment::MachineName()
 	{
 		std::wstring buffer(MAX_COMPUTERNAME_LENGTH + 1, L'\0');
-		auto size = Numeric::SafeCast<DWORD>(buffer.size());
+		auto size = Numeric::StrictIntCast<DWORD>(buffer.size());
 		if (::GetComputerNameW(buffer.data(), &size))
 		{
 			return buffer.data();
@@ -20,7 +20,7 @@ namespace GreenLizard
 	String Environment::UserName()
 	{
 		std::wstring buffer(UNLEN + 1, L'\0');
-		auto size = Numeric::SafeCast<DWORD>(buffer.size());
+		auto size = Numeric::StrictIntCast<DWORD>(buffer.size());
 		if (::GetUserNameW(buffer.data(), &size))
 		{
 			// we must subtract 1 because GetUserNameW includes the null terminator
