@@ -4,16 +4,16 @@ add_executable(${PROJECT_NAME} "")
 
 add_subdirectory(Platforms)
 
-file(GLOB_RECURSE Tests_Files "test_*.cpp")
+file(GLOB_RECURSE Source_Files "test_*.cpp")
 
 target_sources(${PROJECT_NAME}
-    PRIVATE
-        ${Tests_Files}
-)
+        PRIVATE
+        ${Source_Files}
+        )
 
 find_package(GTest CONFIG REQUIRED)
 target_link_libraries(${PROJECT_NAME}
-    PRIVATE
+        PRIVATE
         GTest::gtest GTest::gtest_main
         GreenLizard
-)
+        )

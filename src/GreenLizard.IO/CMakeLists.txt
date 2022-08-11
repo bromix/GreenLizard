@@ -3,26 +3,26 @@ project(GreenLizard.IO VERSION 0.0.0)
 add_library(${PROJECT_NAME} STATIC "")
 
 file(GLOB_RECURSE Source_Files
-    "src/*.cpp"
-    "include/GreenLizard/**/*.hpp"
-)
+        "src/*.cpp"
+        "include/GreenLizard/**/*.hpp"
+        )
 
 add_subdirectory(Platforms)
 
 target_sources(${PROJECT_NAME}
-    PRIVATE
+        PRIVATE
         ${Source_Files}
         ${Platform_Source_Files}
-)
+        )
 
 target_link_libraries(${PROJECT_NAME}
-    PUBLIC
+        PUBLIC
         GreenLizard
-)
+        )
 
 
 target_include_directories(${PROJECT_NAME}
-    PUBLIC
+        PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>
-)
+        )
