@@ -7,42 +7,23 @@ namespace GreenLizard::Platform
 	class Handle
 	{
 	 public:
-		Handle(const Handle& other) = delete;
-
-		Handle(Handle&& other) = delete;
-
-		Handle& operator=(const Handle& other) = delete;
-
 		/**
 		 * @brief Default constructor.
 		 */
-		Handle() = default;
+		Handle();
 
 		/**
 		 * @brief Destructor.
+		 * @remarks If the handle is owned by the handle, it will be closed.
 		 */
 		~Handle();
 
 		/**
-		 * @brief Constructor with a handle.
-		 *
-		 * @param handle
+		 * @brief Constructor.
+		 * @param handle The handle.
+		 * @param ownsHandle Whether the handle is owned by the handle or not.
 		 */
-		Handle(const ::HANDLE& handle);
-
-		/**
-		 * @brief Assignment operator.
-		 * @param other
-		 * @return this
-		 */
-		Handle& operator=(const ::HANDLE& other);
-
-		/**
-		 * @brief Move operator.
-		 * @param other
-		 * @return this
-		 */
-		Handle& operator=(Handle&& other);
+		Handle(::HANDLE handle, bool ownsHandle = true);
 
 		/**
 		 * @brief Determine whether the handle is valid.
@@ -56,7 +37,17 @@ namespace GreenLizard::Platform
 		 */
 		[[nodiscard]] bool IsNull() const;
 
-		bool IsNullOrInvalid() const;
+		/**
+		 * @brief Determine whether the handle is null or invalid.
+		 * @return true if the handle is null or invalid, false otherwise.
+		 */
+		[[nodiscard]] bool IsNullOrInvalid() const;
+
+		/**
+		 * @brief Determine whether the handle owns the handle.
+		 * @return true if the handle owns the handle, false otherwise.
+		 */
+		[[nodiscard]] bool OwnsHandle() const;
 
 		/**
 		 * @brief SafeCast to ::HANDLE.
@@ -65,5 +56,6 @@ namespace GreenLizard::Platform
 
 	 private:
 		::HANDLE handle = nullptr;
+		bool ownsHandle = true;
 	};
 }

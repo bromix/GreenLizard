@@ -3,8 +3,27 @@
 
 namespace GreenLizard
 {
-	Platform::Handle::Handle(HANDLE const& handle) : handle(handle)
+	Platform::Handle::Handle() :
+		handle(nullptr),
+		ownsHandle(false)
 	{
+	}
+
+	Platform::Handle::Handle(::HANDLE handle, bool ownsHandle) :
+		handle(handle),
+		ownsHandle(ownsHandle)
+	{
+
+	}
+
+	Platform::Handle::~Handle()
+	{
+		if (ownsHandle && !IsNull())
+		{
+			::CloseHandle(handle);
+			handle = nullptr;
+			ownsHandle = false;
+		}
 	}
 
 	Platform::Handle::operator ::HANDLE() const
@@ -27,32 +46,8 @@ namespace GreenLizard
 		return IsNull() || IsInvalid();
 	}
 
-	Platform::Handle& Platform::Handle::operator=(Platform::Handle&& other)
+	bool Platform::Handle::OwnsHandle() const
 	{
-		if (!this->IsNull())
-		{
-			// TODO: this is not allowed
-		}
-		std::swap(this->handle, other.handle);
-		return *this;
-	}
-
-	Platform::Handle& Platform::Handle::operator=(HANDLE const& other)
-	{
-		if (!this->IsNull())
-		{
-			// TODO: this is not allowed
-		}
-		this->handle = other;
-		return *this;
-	}
-
-	Platform::Handle::~Handle()
-	{
-		if (!this->IsNull())
-		{
-			// TODO: throw exception if not null
-			// Caller should close or detach the handle!
-		}
+		return ownsHandle;
 	}
 }
