@@ -11,11 +11,11 @@ namespace GreenLizard
 		~Numeric() = delete;
 
 		/**
-		 * @brief Convert an integral value to another integral value.
-		 * @param value The value to convert.
-		 * @param to The type to convert to.
-		 * @return The converted value.
-		 * @remark This function uses static_assert to check if the conversion is valid at compile time.
+		 * @brief Cast an integral value to another integral value.
+		 * @param value The value to cast.
+		 * @param to The type to cast to.
+		 * @return The casted value.
+		 * @remark This function uses static_assert to check if the cast is valid at compile time.
 		 */
 		template<typename TTarget, typename TSource>
 		static TTarget StrictIntCast(TSource source)
@@ -37,11 +37,11 @@ namespace GreenLizard
 		}
 
 		/**
-		 * @brief Convert an floating point value to another floating point value.
-		 * @param value The value to convert.
-		 * @param to The type to convert to.
-		 * @return The converted value.
-		 * @remark This function uses static_assert to check if the conversion is valid at compile time.
+		 * @brief Cast an floating point value to another floating point value.
+		 * @param value The value to cast.
+		 * @param to The type to cast to.
+		 * @return The casted value.
+		 * @remark This function uses static_assert to check if the cast is valid at compile time.
 		 */
 		template<typename TTarget, typename TSource>
 		static TTarget StrictFloatCast(TSource source)
@@ -63,11 +63,11 @@ namespace GreenLizard
 		}
 
 		/**
-		 * @brief Convert an arithmetic value to another arithmetic value.
-		 * @param value The value to convert.
-		 * @param to The type to convert to.
-		 * @return The converted value.
-		 * @remark This function uses static_assert to check if the conversion is valid at compile time.
+		 * @brief Cast an arithmetic value to another arithmetic value.
+		 * @param value The value to cast.
+		 * @param to The type to cast to.
+		 * @return The casted value.
+		 * @remark This function uses static_assert to check if the cast is valid at compile time.
 		 */
 		template<typename TTarget, typename TSource>
 		static TTarget StrictCast(TSource source)
@@ -89,11 +89,11 @@ namespace GreenLizard
 		}
 
 		/**
-		 * @brief Convert an integral value to another integral value.
-		 * @param value The value to convert.
-		 * @param to The type to convert to.
-		 * @return The converted value.
-		 * @remark This function converts only to the target type if the numeric value will fit in the target type.
+		 * @brief Cast an integral value to another integral value.
+		 * @param value The value to cast.
+		 * @param to The type to cast to.
+		 * @return The casted value.
+		 * @remark This function casts only to the target type if the numeric value will fit in the target type.
 		 * @throws GreenLizard::Exception if the conversion is not valid.
 		 */
 		template<typename TTarget, typename TSource>
@@ -113,11 +113,11 @@ namespace GreenLizard
 		}
 
 		/**
-		 * @brief Convert an floating point value to another floating point value.
-		 * @param value The value to convert.
-		 * @param to The type to convert to.
-		 * @return The converted value.
-		 * @remark This function converts only to the target type if the numeric value will fit in the target type.
+		 * @brief Cast an floating point value to another floating point value.
+		 * @param value The value to cast.
+		 * @param to The type to cast to.
+		 * @return The casted value.
+		 * @remark This function casts only to the target type if the numeric value will fit in the target type.
 		 * @throws GreenLizard::Exception if the conversion is not valid.
 		 */
 		template<typename TTarget, typename TSource>
@@ -137,11 +137,11 @@ namespace GreenLizard
 		}
 
 		/**
-		 * @brief Convert an arithmetic value to another arithmetic value.
-		 * @param value The value to convert.
-		 * @param to The type to convert to.
-		 * @return The converted value.
-		 * @remark This function converts only to the target type if the numeric value will fit in the target type.
+		 * @brief Cast an arithmetic value to another arithmetic value.
+		 * @param value The value to cast.
+		 * @param to The type to cast to.
+		 * @return The casted value.
+		 * @remark This function casts only to the target type if the numeric value will fit in the target type.
 		 * @throws GreenLizard::Exception if the conversion is not valid.
 		 */
 		template<typename TTarget, typename TSource>
