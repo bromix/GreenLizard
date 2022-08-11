@@ -12,7 +12,7 @@ namespace GreenLizard
 		auto size = Numeric::SafeCast<DWORD>(buffer.size());
 		if (::GetComputerNameW(buffer.data(), &size))
 		{
-			return { buffer.data(), size };
+			return buffer.data();
 		}
 		throw Exception("GetComputerNameW failed");
 	}
@@ -24,7 +24,7 @@ namespace GreenLizard
 		if (::GetUserNameW(buffer.data(), &size))
 		{
 			// we must subtract 1 because GetUserNameW includes the null terminator
-			return { buffer.data(), size - 1 };
+			return buffer.data();
 		}
 
 		throw Exception("GetUserNameW failed");
