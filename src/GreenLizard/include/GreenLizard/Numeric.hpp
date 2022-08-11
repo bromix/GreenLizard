@@ -10,6 +10,13 @@ namespace GreenLizard
 		Numeric() = delete;
 		~Numeric() = delete;
 
+		/**
+		 * @brief Convert an integral value to another integral value.
+		 * @param value The value to convert.
+		 * @param to The type to convert to.
+		 * @return The converted value.
+		 * @remark This function uses static_assert to check if the conversion is valid at compile time.
+		 */
 		template<typename TTarget, typename TSource>
 		static TTarget StrictIntCast(TSource source)
 		{
@@ -29,6 +36,13 @@ namespace GreenLizard
 			return static_cast<TTarget>(source);
 		}
 
+		/**
+		 * @brief Convert an floating point value to another floating point value.
+		 * @param value The value to convert.
+		 * @param to The type to convert to.
+		 * @return The converted value.
+		 * @remark This function uses static_assert to check if the conversion is valid at compile time.
+		 */
 		template<typename TTarget, typename TSource>
 		static TTarget StrictFloatCast(TSource source)
 		{
@@ -48,6 +62,13 @@ namespace GreenLizard
 			return static_cast<TTarget>(source);
 		}
 
+		/**
+		 * @brief Convert an arithmetic value to another arithmetic value.
+		 * @param value The value to convert.
+		 * @param to The type to convert to.
+		 * @return The converted value.
+		 * @remark This function uses static_assert to check if the conversion is valid at compile time.
+		 */
 		template<typename TTarget, typename TSource>
 		static TTarget StrictCast(TSource source)
 		{
@@ -67,8 +88,16 @@ namespace GreenLizard
 			return static_cast<TTarget>(source);
 		}
 
+		/**
+		 * @brief Convert an integral value to another integral value.
+		 * @param value The value to convert.
+		 * @param to The type to convert to.
+		 * @return The converted value.
+		 * @remark This function converts only to the target type if the numeric value will fit in the target type.
+		 * @throws GreenLizard::Exception if the conversion is not valid.
+		 */
 		template<typename TTarget, typename TSource>
-		static TTarget FitIntCast(TSource source)
+		static TTarget IntCast(TSource source)
 		{
 			// Both types must be integral.
 			static_assert(std::is_integral<TTarget>::value && std::is_integral<TSource>::value,
@@ -83,8 +112,16 @@ namespace GreenLizard
 			throw Exception("Value out of range");
 		}
 
+		/**
+		 * @brief Convert an floating point value to another floating point value.
+		 * @param value The value to convert.
+		 * @param to The type to convert to.
+		 * @return The converted value.
+		 * @remark This function converts only to the target type if the numeric value will fit in the target type.
+		 * @throws GreenLizard::Exception if the conversion is not valid.
+		 */
 		template<typename TTarget, typename TSource>
-		static TTarget FitFloatCast(TSource source)
+		static TTarget FloatCast(TSource source)
 		{
 			// Both types must be floating point.
 			static_assert(std::is_floating_point<TTarget>::value && std::is_floating_point<TSource>::value,
@@ -99,8 +136,16 @@ namespace GreenLizard
 			throw Exception("Value out of range");
 		}
 
+		/**
+		 * @brief Convert an arithmetic value to another arithmetic value.
+		 * @param value The value to convert.
+		 * @param to The type to convert to.
+		 * @return The converted value.
+		 * @remark This function converts only to the target type if the numeric value will fit in the target type.
+		 * @throws GreenLizard::Exception if the conversion is not valid.
+		 */
 		template<typename TTarget, typename TSource>
-		static TTarget FitCast(TSource source)
+		static TTarget Cast(TSource source)
 		{
 			// types must be arithmetic
 			static_assert(std::is_arithmetic<TTarget>::value && std::is_arithmetic<TSource>::value,
