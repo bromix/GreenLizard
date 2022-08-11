@@ -19,16 +19,17 @@ namespace GreenLizard::IO::Pipes
 			pipeHandle = ::CreateFile(pipeName.c_str(), GENERIC_READ | GENERIC_WRITE, 0, nullptr, OPEN_EXISTING, 0,
 				nullptr);
 			if (pipeHandle.IsInvalid())
-			{
 				throw Platform::Win32Exception(Platform::Kernel32::GetLastError());
-			}
-			::WaitNamedPipe(pipeName.c_str(), timeOut);
+
+			if (::WaitNamedPipe(pipeName.c_str(), timeOut) == FALSE)
+				throw Platform::Win32Exception(Platform::Kernel32::GetLastError());
 		}
 
 		void Write(const void* buffer, const uint32_t offset, const uint32_t length)
 		{
 			DWORD bytesWritten = 0;
-			::WriteFile(pipeHandle, buffer, length, &bytesWritten, nullptr);
+			if (::WriteFile(pipeHandle, buffer, length, &bytesWritten, nullptr) == FALSE)
+				throw Platform::Win32Exception(Platform::Kernel32::GetLastError());
 		}
 
 	 private:
