@@ -97,7 +97,7 @@ TEST(Numerics, double_to_long_double)
 TEST(Numerics, double_to_int64)
 {
 	double from = std::numeric_limits<double>::max();
-	auto to = Numeric::Cast<int64_t>(from);
+	//auto to = Numeric::Cast<int64_t>(from);
 	// TODO: test throws exception
 	// ASSERT_EQ(to, from);
 }
