@@ -20,3 +20,34 @@ with C++.
 | GreenLizard       | Base library                                         |
 | GreenLizard.IO    | library for IO Operations (in progress               |
 | GreenLizard.Win32 | library for operations on MS Windows (e.g. Registry) |
+
+# Examples
+
+## String
+
+```cpp
+#include <GreenLizard/String.hpp>
+
+using namespace GreenLizard;
+
+void main()
+{
+	String s = "Hello World!";
+}
+```
+
+## Registry
+
+```cpp
+#include <GreenLizard/Win32/Registry.hpp>
+
+using namespace GreenLizard::Win32;
+
+void main()
+{
+	auto currentUserKey = RegistryKey::OpenBaseKey(RegistryHive::LocalMachine, RegistryView::Default);
+	auto softwareKey = currentUserKey->OpenSubKey(R"(SOFTWARE\Microsoft\Windows\CurrentVersion)");
+	auto value = softwareKey->GetValue(R"(CommonFilesDir)");
+	auto stringValue = value->Value<String>();
+}
+```
