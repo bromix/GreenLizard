@@ -99,7 +99,7 @@ namespace GreenLizard
 		 * @brief Determine if the string is empty.
 		 * @return True if the string is empty, false otherwise.
 		 */
-		bool IsEmpty();
+		[[nodiscard]] bool IsEmpty() const;
 
 		/**
 		 * @brief Determine if the given string is equal to this string.

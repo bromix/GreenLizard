@@ -94,7 +94,7 @@ namespace GreenLizard
 		return stringBuffer.value().c_str();
 	}
 
-	bool String::IsEmpty()
+	bool String::IsEmpty() const
 	{
 		return stringBuffer.value().empty();
 	}
